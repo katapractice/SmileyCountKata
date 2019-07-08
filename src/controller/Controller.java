@@ -19,7 +19,7 @@ public class Controller
 //		The initial test array
 		countSmileys = new ArrayList<>();
 		countSmileys.add("x0D");
-		countSmileys.add(":-(");
+		countSmileys.add(":-)");
 		countSmileys.add(":..-)");
 		countSmileys.add(";~)");
 		
@@ -56,7 +56,6 @@ public class Controller
 	
 	private int countSmileys(List<String> arr)
 	{
-		int returnMe = 0;
 		int smileyCount = 0;
 		
 		
@@ -65,16 +64,69 @@ public class Controller
 		{
 			tempFaces.clear();
 			tempFaces.addAll(Arrays.asList(smiley.split("")));
+			tempFaces.removeAll(Arrays.asList(smiley, ""));
+			System.out.println(tempFaces);
 			
-//			The inner loop where we loop through faces components.
-			for(String parts: tempFaces)
+			int i = 0;
+			while(i < tempFaces.size())
 			{
+				if(tempFaces.get(i).contains(":") || tempFaces.get(i).contains(";"))
+				{
+					i++;
+					System.out.println("Right Eyes" + smiley + tempFaces.get(i));
+					
+					if(tempFaces.get(i).contains("-") || tempFaces.get(i).contains("~")|| tempFaces.get(i).equals(""))
+					{
+						System.out.println("Right Nose" + smiley);
+						i++;
+						
+						if(tempFaces.get(i).contains(")") || tempFaces.get(i++).contains("D"))
+						{
+							System.out.println("Right Mouth" + smiley);
+							smileyCount++;
+						}
+					}
+				}
 				
+				i++;
 			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+//			
+////			The inner loop where we loop through faces components.
+//			for(int i = 0; i < tempFaces.size(); i++)
+//			{
+//				if(tempFaces.get(i).contains(":") || tempFaces.get(i).contains(";"))
+//				{
+//					System.out.println("Right Eyes" + smiley + tempFaces.get(i));
+//					
+//					if(tempFaces.get(i++).contains("-") || tempFaces.get(i++).contains("~")|| tempFaces.get(i++).equals(""))
+//					{
+//						System.out.println("Right Nose" + smiley);
+//						i++;
+//						
+//						if(tempFaces.get(i).contains(")") || tempFaces.get(i++).contains("D"))
+//						{
+//							System.out.println("Right Mouth" + smiley);
+//							smileyCount++;
+//						}
+//					}
+//				}
+//				
+//			}
 			
 		}
 		
-		return returnMe;
+		return smileyCount;
 	}
 	
 }
