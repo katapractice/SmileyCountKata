@@ -64,67 +64,63 @@ public class Controller
 		{
 			tempFaces.clear();
 			tempFaces.addAll(Arrays.asList(smiley.split("")));
-			tempFaces.removeAll(Arrays.asList(smiley, ""));
-			System.out.println(tempFaces);
 			
-			int i = 0;
-			while(i < tempFaces.size())
+//			This executes on smileys that have a 'nose'
+			if(tempFaces.size() <= 5 )
 			{
-				if(tempFaces.get(i).contains(":") || tempFaces.get(i).contains(";"))
+				int i = 0;
+				while(i < tempFaces.size())
 				{
-					i++;
-					System.out.println("Right Eyes" + smiley + tempFaces.get(i));
 					
-					if(tempFaces.get(i).contains("-") || tempFaces.get(i).contains("~")|| tempFaces.get(i).equals(""))
+					if(tempFaces.get(i).contains(":") || tempFaces.get(i).contains(";") )
 					{
-						System.out.println("Right Nose" + smiley);
+						
 						i++;
 						
-						if(tempFaces.get(i).contains(")") || tempFaces.get(i++).contains("D"))
+						if(tempFaces.get(i).contains("-") || tempFaces.get(i).contains("~"))
 						{
-							System.out.println("Right Mouth" + smiley);
-							smileyCount++;
+							i++;
+							if(tempFaces.get(i).contains(")") ||tempFaces.get(i).contains("D"))
+							{
+								smileyCount++;
+								System.out.println("This smiley has passed " + smiley);
+							}
 						}
+						
+					}
+					else
+					{
+						if(tempFaces.size() == 2)
+						{
+							while(i < tempFaces.size())
+							{
+								
+								if(tempFaces.get(i).contains(":") || tempFaces.get(i).contains(";") )
+								{
+									
+									i++;
+									
+									if(tempFaces.get(i).contains(")") || tempFaces.get(i).contains("D"))
+									{
+										smileyCount++;
+										
+									}
+									
+								}
+								
+							}
+							
+						}
+						else
+						{
+							break;
+						}
+						
 					}
 				}
-				
-				i++;
 			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-//			
-////			The inner loop where we loop through faces components.
-//			for(int i = 0; i < tempFaces.size(); i++)
-//			{
-//				if(tempFaces.get(i).contains(":") || tempFaces.get(i).contains(";"))
-//				{
-//					System.out.println("Right Eyes" + smiley + tempFaces.get(i));
-//					
-//					if(tempFaces.get(i++).contains("-") || tempFaces.get(i++).contains("~")|| tempFaces.get(i++).equals(""))
-//					{
-//						System.out.println("Right Nose" + smiley);
-//						i++;
-//						
-//						if(tempFaces.get(i).contains(")") || tempFaces.get(i++).contains("D"))
-//						{
-//							System.out.println("Right Mouth" + smiley);
-//							smileyCount++;
-//						}
-//					}
-//				}
-//				
-//			}
-			
-		}
+					
+		}	
 		
 		return smileyCount;
 	}
